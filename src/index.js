@@ -18,7 +18,6 @@ app.listen(app.get('port'), () => {
 });
 
 //Rutas
-app.use(require('./routes/inicio'));
 app.use('/autenticacion', require('./routes/autenticacion'));
 app.use('/comentario', require('./routes/comentario'));
 app.use('/noticia', require('./routes/noticia'));

@@ -3,12 +3,12 @@ const { ingresar, mostrar, actualizar, eliminar } = require('../controllers/cont
 const router=express.Router();
 
 
-router.get('/:id',mostrar);
+router.get('/:idnoticia',mostrar);
 
 router.post('/',ingresar);
 
-router.put('/:id',actualizar);
+router.put('/:idnoticia',actualizar);
 
-router.delete('/:id',eliminar);
+router.delete('/:idnoticia',eliminar);
 
 module.exports=router;

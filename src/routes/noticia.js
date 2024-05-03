@@ -1,11 +1,13 @@
 const express = require('express');
-const {ingresarNoticia, todaslasnoticias, actualizarNoticia, eliminarNoticia } = require('../controllers/controllerNoticia');
+const {ingresarNoticia, todaslasnoticias, actualizarNoticia, eliminarNoticia, mostrarNoticia } = require('../controllers/controllerNoticia');
 
 const router = express.Router();
 
 router.get('/',todaslasnoticias);
 
-router.post('/editarNoticia/:id', ingresarNoticia);
+router.get('/idNoticia',mostrarNoticia);
+
+router.post('/crearNoticia', ingresarNoticia);
 
 router.put('/editarNoticia/:id',actualizarNoticia);
 
