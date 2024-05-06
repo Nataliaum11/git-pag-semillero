@@ -1,7 +1,8 @@
 const express = require('express');
 const morgan = require('morgan');
-
+const {conection} = require('./db')
 //inicializacion 
+conection()
 const app = express();
 
 //middlewares
