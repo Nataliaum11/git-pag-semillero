@@ -1,9 +1,12 @@
 const express = require('express');
 const morgan = require('morgan');
-const {conection} = require('./db')
-//inicializacion 
-conection()
+const {connection} = require('./db');
+/*const dontenv = require('dotenv');
+dontenv.config();
+console.log(process.env.name)*/
 const app = express();
+
+connection();
 
 //middlewares
 app.use(morgan('dev'));
@@ -19,7 +22,8 @@ app.listen(app.get('port'), () => {
 });
 
 //Rutas
-app.use('/autenticacion', require('./routes/autenticacion'));
+app.use('/login', require('./routes/autenticacion'));
 app.use('/comentario', require('./routes/comentario'));
 app.use('/noticia', require('./routes/noticia'));
+
 

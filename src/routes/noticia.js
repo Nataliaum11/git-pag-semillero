@@ -5,12 +5,19 @@ const router = express.Router();
 
 router.get('/',todaslasnoticias);
 
-router.get('/idNoticia',mostrarNoticia);
+router.get('/:idNoticia',mostrarNoticia);
 
 router.post('/crearNoticia', ingresarNoticia);
 
-router.put('/editarNoticia/:id',actualizarNoticia);
+router.put('/editarNoticia/:idNoticia',actualizarNoticia);
 
-router.delete('/editarNoticia/:id',eliminarNoticia);
+router.delete('/editarNoticia/:idNoticia',eliminarNoticia);
 
 module.exports=router;
+
+
+
+
+
+
+

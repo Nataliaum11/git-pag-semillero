@@ -1,7 +1,9 @@
-const express=require('express');
-const { tipoUsuario} = require('../controllers/controllerAuthentication');
-const router=express.Router();
+const express = require('express');
+const { login} = require('../controllers/controllerAuthentication');
+const router = express.Router();
 
-router.post('/',tipoUsuario);
+// Ruta para iniciar sesión
+router.get('/:idAdministrador', login);
 
-module.exports=router;
+
+module.exports = router;
