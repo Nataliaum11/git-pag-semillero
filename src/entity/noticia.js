@@ -7,7 +7,7 @@ const noticia = new EntitySchema({
             primary: true,
             type: "int",
             generated: true
-            },
+        },
         titulo: {
             type: "varchar"
         },
@@ -28,10 +28,8 @@ const noticia = new EntitySchema({
             type: "varchar"
         }
 
-
-        
-
-} } )
+    }
+})
 
 module.exports = noticia;
 

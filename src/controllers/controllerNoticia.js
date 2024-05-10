@@ -41,7 +41,7 @@ const ingresarNoticia = async (req,res)=>{
         res.json({msg:"noticia agregada"});
     } catch(error){
         console.error('Error al obtener la noticia:', error);
-        res.status(500).json({ error: 'Error al obtener la noticia' });
+        res.status(400).json({ error: 'Error al ingresar la noticia' });
         
     }
     
@@ -70,7 +70,7 @@ const actualizarNoticia = async (req, res) => {
         res.json({ msg: "Noticia actualizada correctamente" });
     } catch (error) {
         console.error('Error al actualizar la noticia:', error);
-        res.status(500).json({ error: 'Error al actualizar la noticia' });
+        res.status(400).json({ error: 'Error al actualizar la noticia' });
     }
 };
 

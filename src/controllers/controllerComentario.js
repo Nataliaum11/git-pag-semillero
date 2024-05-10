@@ -1,24 +1,24 @@
-const ingresar = (req,res)=>{
+const ingresar = (req, res) => {
     res.send('Creando comentario...');
-    
+
 }
 
-const mostrar = (req,res)=>{
+const mostrar = (req, res) => {
     res.send('Obteniendo comentario...');
     //aca se desarrolla codigo de base datos
 }
 
-const actualizar = (req,res)=>{
+const actualizar = (req, res) => {
     res.send('Actualizando comentario...');
-    
+
 }
 
-const eliminar = (req,res)=>{
+const eliminar = (req, res) => {
     res.send('Eliminando comentario...');
-    
+
 }
 
-module.exports={
+module.exports = {
     mostrar,
     ingresar,
     actualizar,

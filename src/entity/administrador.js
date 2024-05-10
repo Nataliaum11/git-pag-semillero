@@ -7,18 +7,18 @@ const Administrador = new EntitySchema({
         idAdministrador: {
             primary: true,
             type: "varchar",
-           
+
         },
         idUsuarios: {
             type: "varchar",
-           
+
         },
         cargo: {
             type: "varchar",
 
         }
     },
-    
+
 });
 
 module.exports = Administrador;
