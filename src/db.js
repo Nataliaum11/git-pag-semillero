@@ -2,14 +2,16 @@ var typeorm = require("typeorm")
 const noticia = require("./entity/noticia")
 const administrador = require("./entity/administrador")
 const usuario = require('./entity/usuario')
+const dotenv = require('dotenv');
+dotenv.config();
 
 var dataSource = new typeorm.DataSource({
     type: "mysql",
-    host: "localhost",
-    port: 3306,
-    username: "root",
-    password: "qwerty",
-    database: "dbDevUnaula",
+    host: process.env.host,
+    port: process.env.portdb,
+    username: process.env.usernamedb,
+    password: process.env.password,
+    database: process.env.database,
     synchronize: false,
     entities: [noticia, administrador, usuario],
 })
