@@ -3,11 +3,9 @@ const Noticia = require('../entity/noticia');
 
 const todaslasnoticias = async (req, res) => {
     try {
-       
         const repositorio = dataSource.getRepository("noticia");
         const noticias = await repositorio.find();
         res.json(noticias);
-        console.log(noticias);
     } catch (error) {
         console.error('Error al obtener las noticias:', error);
         res.status(500).json({ error: 'Error al obtener las noticias' });
@@ -19,7 +17,7 @@ const mostrarNoticia = async (req, res) => {
     try {
         const { idNoticia } = req.params;
         const repositorio = dataSource.getRepository("noticia");
-        console.log(idNoticia);
+
         const noticia = await repositorio.findOne({ where: { idNoticia: idNoticia } });
         if (!noticia) {
             return res.status(404).json({ error: 'Noticia no encontrada' });
@@ -32,19 +30,24 @@ const mostrarNoticia = async (req, res) => {
 };
 
 
-const ingresarNoticia = async (req,res)=>{
-    try{
-        const { titulo, descripcion, contenido, fechaPublicacion, foto, idAdministrador} = req.body;
-        const noticia = { titulo, descripcion, contenido, fechaPublicacion, foto, idAdministrador};
+const ingresarNoticia = async (req, res) => {
+    try {
+        const { titulo, descripcion, contenido, fechaPublicacion, foto, idAdministrador } = req.body;
+        const noticia = { titulo, descripcion, contenido, fechaPublicacion, foto, idAdministrador };
         const repositorio = dataSource.getRepository("noticia");
+
+        if (!titulo || !descripcion || !contenido || !fechaPublicacion || !foto || !idAdministrador) {
+            return res.status(404).json({ error: 'El contenido no esta completo' });
+        }
+
         await repositorio.insert(noticia)
-        res.json({msg:"noticia agregada"});
-    } catch(error){
+        res.json({ msg: "noticia agregada" });
+    } catch (error) {
         console.error('Error al obtener la noticia:', error);
         res.status(400).json({ error: 'Error al ingresar la noticia' });
-        
+
     }
-    
+
 }
 
 const actualizarNoticia = async (req, res) => {
@@ -55,7 +58,9 @@ const actualizarNoticia = async (req, res) => {
         if (!idNoticia) {
             return res.status(400).json({ error: 'ID de noticia no proporcionado' });
         }
-
+        if (!titulo || !descripcion || !contenido || !fechaPublicacion || !foto || !idAdministrador) {
+            return res.status(404).json({ error: 'El contenido no esta completo' });
+        }
         const repositorio = dataSource.getRepository("noticia");
 
         await repositorio.update({ idNoticia: idNoticia }, {
@@ -75,7 +80,7 @@ const actualizarNoticia = async (req, res) => {
 };
 
 
-const eliminarNoticia = async (req,res)=>{
+const eliminarNoticia = async (req, res) => {
 
     try {
         const { idNoticia } = req.params;
@@ -85,7 +90,12 @@ const eliminarNoticia = async (req,res)=>{
 
         const repositorio = dataSource.getRepository("noticia");
 
-        await repositorio.delete({idNoticia: idNoticia });
+        const validacion = await repositorio.findOne({ where: { idNoticia: idNoticia } });
+        if (!validacion) {
+            return res.status(404).json({ error: 'Noticia no encontrada' });
+        }
+
+        await repositorio.delete({ idNoticia: idNoticia });
 
         res.json({ msg: "Noticia eliminada correctamente" });
     } catch (error) {
@@ -95,10 +105,10 @@ const eliminarNoticia = async (req,res)=>{
 }
 
 
-module.exports={
-   todaslasnoticias,
-   ingresarNoticia,
-   actualizarNoticia,
-   eliminarNoticia,
-   mostrarNoticia
+module.exports = {
+    todaslasnoticias,
+    ingresarNoticia,
+    actualizarNoticia,
+    eliminarNoticia,
+    mostrarNoticia
 }

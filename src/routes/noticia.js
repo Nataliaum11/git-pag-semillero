@@ -1,6 +1,5 @@
 const express = require('express');
 const { ingresarNoticia, todaslasnoticias, actualizarNoticia, eliminarNoticia, mostrarNoticia } = require('../controllers/controllerNoticia');
-
 const router = express.Router();
 
 router.get('/', todaslasnoticias);

@@ -2,6 +2,7 @@ var typeorm = require("typeorm")
 const noticia = require("./entity/noticia")
 const administrador = require("./entity/administrador")
 const usuario = require('./entity/usuario')
+const comentario = require("./entity/comentario")
 const dotenv = require('dotenv');
 dotenv.config();
 
@@ -13,7 +14,7 @@ var dataSource = new typeorm.DataSource({
     password: process.env.password,
     database: process.env.database,
     synchronize: false,
-    entities: [noticia, administrador, usuario],
+    entities: [noticia, administrador, usuario,comentario],
 })
 
 async function connection() {

@@ -2,13 +2,12 @@ const express=require('express');
 const { ingresar, mostrar, actualizar, eliminar } = require('../controllers/controllerComentario');
 const router=express.Router();
 
+router.get('/:idNoticia',mostrar);
 
-router.get('/:idnoticia',mostrar);
+router.post('/:idNoticia',ingresar);
 
-router.post('/',ingresar);
+router.put('/:idNoticia/:idComentario',actualizar);
 
-router.put('/:idnoticia',actualizar);
-
-router.delete('/:idnoticia',eliminar);
+router.delete('/:idNoticia/:idComentario',eliminar);
 
 module.exports=router;
